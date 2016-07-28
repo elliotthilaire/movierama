@@ -2,21 +2,14 @@ class UsersController < ApplicationController
 
   def edit
     authorize! :edit, User
-
-    @current_user = current_user
-    @validator = NullValidator.instance
+    _set_user
   end
 
   def update
     authorize! :update, User
+    _set_user
 
-    @current_user = current_user
-    @validator = NullValidator.instance
-
-    @current_user.update_attributes(_update_params)
-
-    if @validator.valid?
-      @current_user.save
+    if @current_user.update(_update_params)
       flash[:notice] = "Preferences updated"
       redirect_to edit_user_url
     else
@@ -26,6 +19,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def _set_user
+    @current_user = current_user
+  end
 
   def _update_params
     params.permit(:email)
