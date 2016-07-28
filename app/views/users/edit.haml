@@ -3,7 +3,7 @@
   .row
     .col-md-12
       .page-header
-        %h2 Edit your preferences
+        %h2 Edit your Profile
   .row
     .col-md-9
       Enter your email to recieve notifications
@@ -13,4 +13,4 @@
           %input.form-control{ name: 'email', value: @current_user.email  }
 
         .form-group
-          = submit_tag 'Update preferences', class: 'btn btn-primary'
+          = submit_tag 'Update Profile', class: 'btn btn-primary'

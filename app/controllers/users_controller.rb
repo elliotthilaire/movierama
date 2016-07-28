@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     if @validator.valid?
       @current_user.save
-      flash[:notice] = "Preferences updated"
+      flash[:notice] = "Profile updated"
       redirect_to edit_user_url
     else
       flash[:error] = "Errors were detected"
