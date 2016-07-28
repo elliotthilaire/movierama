@@ -3,13 +3,18 @@ class UsersController < ApplicationController
   def edit
     authorize! :edit, User
     _set_user
+    @validator = NullValidator.instance
   end
 
   def update
     authorize! :update, User
     _set_user
 
-    if @current_user.update(_update_params)
+    @current_user.update_attributes(_update_params)
+    @validator = UserValidator.new(@current_user)
+
+    if @validator.valid?
+      @current_user.save
       flash[:notice] = "Preferences updated"
       redirect_to edit_user_url
     else

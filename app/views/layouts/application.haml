@@ -19,6 +19,8 @@
           %p.navbar-text.navbar-right
             Welcome back,
             %span#username= current_user.name
+            = link_to edit_user_path do
+              Profile
             = link_to session_path, method: :delete do
               Log out
         - else

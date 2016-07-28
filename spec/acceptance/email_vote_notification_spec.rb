@@ -1,7 +1,6 @@
 require 'rails_helper'
 require 'capybara/rails'
 require 'support/pages/movie_list'
-require 'support/pages/movie_new'
 require 'support/with_user'
 
 RSpec.describe 'email vote notification to user', type: :feature do
