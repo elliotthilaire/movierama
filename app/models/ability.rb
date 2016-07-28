@@ -9,5 +9,9 @@ class Ability
     end
 
     can :create, Movie
+
+    can :edit, User
+    can :update, User
+
   end
 end

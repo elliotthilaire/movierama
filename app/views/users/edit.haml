@@ -1,0 +1,16 @@
+
+.container
+  .row
+    .col-md-12
+      .page-header
+        %h2 Edit your preferences
+  .row
+    .col-md-9
+      Enter your email to recieve notifications
+      = form_tag user_path, { method: :put,  class: 'form', role: 'form' } do |f|
+        .form-group{ class: @validator.class_for(:email) }
+          %label{ for:  'email' } Email
+          %input.form-control{ name: 'email', value: @current_user.email  }
+
+        .form-group
+          = submit_tag 'Update preferences', class: 'btn btn-primary'
