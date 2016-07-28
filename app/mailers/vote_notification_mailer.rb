@@ -3,9 +3,8 @@ class VoteNotificationMailer < ActionMailer::Base
 
   def notification_email(movie)
     @movie = movie
-    @user = @movie.user
+    @author = @movie.user
 
-    @url  = 'http://example.com/login'
-    mail(to: 'no_one@email.com', subject: "#{@movie.title} has a new vote!")
+    mail(to: @author.email, subject: "#{@movie.title} has a new vote!")
   end
 end

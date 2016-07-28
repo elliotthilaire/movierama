@@ -14,7 +14,7 @@ class VotingBooth
     unvote # to guarantee consistency
     set.add(@user)
     _update_counts
-    _notify_owner
+    _notify_author
     self
   end
 
@@ -33,7 +33,7 @@ class VotingBooth
       hater_count: @movie.haters.size)
   end
 
-  def _notify_owner
-    VoteNotificationMailer.notification_email(@movie).deliver
+  def _notify_author
+    AuthorNotifier.new(@movie)
   end
 end
