@@ -1,5 +1,4 @@
-class VoteNotificationMailer < ActionMailer::Base
-  default from: "from@example.com"
+class VoteNotificationMailer < ApplicationMailer
 
   def notification_email(movie)
     @movie = movie
