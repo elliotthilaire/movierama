@@ -65,7 +65,17 @@ Login/signup use Omniauth with Github as a provider. If you're using Pow and the
 If not, you'll need to get your own OAuth tokens from Github and edit
 `.env` appropriately.
 
+#### Email in development
 
+Actionmailer is configured for [https://mailcatcher.me/](https://mailcatcher.me/)
+
+Run with with
+```
+gem install 'mailcatcher'
+mailcatcher
+```
+
+Then visit [http://localhost:1080](http://localhost:1080) to view emails.
 
 ### Screenshot
 
