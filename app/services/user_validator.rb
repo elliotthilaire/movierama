@@ -12,7 +12,7 @@ class UserValidator
     return @errors if @errors
     @errors = {}
 
-    if @user.email.blank? || @user.email.exclude?('@')
+    unless _blank_email? || _valid_email?
       @errors[:email] = true
     end
 
@@ -21,5 +21,15 @@ class UserValidator
 
   def class_for(field)
     errors[field] ? "has-error" : ""
+  end
+
+  private
+
+  def _blank_email?
+    @user.email.blank?
+  end
+
+  def _valid_email?
+    @user.email.include?('@')
   end
 end
