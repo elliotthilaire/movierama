@@ -11,7 +11,8 @@ RSpec.describe 'email vote notification to user', type: :feature do
   before do
     author = User.create(
       uid:  'null|12345',
-      name: 'Bob'
+      name: 'Bob',
+      email: 'bob@starwars.com'
     )
     Movie.create(
       title:        'Empire strikes back',
@@ -31,6 +32,13 @@ RSpec.describe 'email vote notification to user', type: :feature do
         expect { page.like('Empire strikes back') }
         .to change { ActionMailer::Base.deliveries.count }.by(1)
       end
+
+      it 'sends an email to the author' do
+        page.hate('Empire strikes back')
+        mail = ActionMailer::Base.deliveries.last
+        expect(mail.to).to eq ['bob@starwars.com']
+      end
+
     end
 
     context 'when hated' do
@@ -38,8 +46,13 @@ RSpec.describe 'email vote notification to user', type: :feature do
         expect { page.hate('Empire strikes back') }
         .to change { ActionMailer::Base.deliveries.count }.by(1)
       end
-    end
 
+      it 'sends an email to the author' do
+        page.hate('Empire strikes back')
+        mail = ActionMailer::Base.deliveries.last
+        expect(mail.to).to eq ['bob@starwars.com']
+      end
+    end
   end
 end
 
