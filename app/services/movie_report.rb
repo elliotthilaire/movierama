@@ -11,10 +11,16 @@ class MovieReport
   end
 
   def likes
-    7 # query DB for likes today
+    Votes.find(movie: movie)
+      .select { |vote| vote.vote == :like }
+      .select { |vote| vote.created_at.to_date == @date }
+      .count
   end
 
   def hates
-    6
+    Votes.find(movie: movie)
+      .select { |vote| vote.vote == :hate }
+      .select { |vote| vote.created_at.to_date == @date }
+      .count
   end
 end
