@@ -13,6 +13,9 @@ class VotingBooth
     end
     unvote # to guarantee consistency
     set.add(@user)
+
+    Vote.new(vote: like_or_hate, user: @user, movie: @movie)
+
     _update_counts
     _notify_author
     self
