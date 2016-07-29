@@ -3,5 +3,8 @@ class Vote < BaseModel
   attribute :vote
 
   reference :user, :User
+  index     :user
+
   reference :movie, :Movie
+  index     :movie
 end
